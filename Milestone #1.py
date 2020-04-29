@@ -24,3 +24,5 @@ def player_input():
         player2 ="X"
 
     return(player1, player2)
+
+
