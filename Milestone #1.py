@@ -1,5 +1,6 @@
 #Step 1 Function that prints out a board. Where each index 1-9 corresponds with a number on number pad.
 from IPython.display import clear_output
+import random
 
 def display_board(board):
     clear_output()
@@ -47,7 +48,7 @@ def win_check(board, mark):
 
 #Step 5, Function that uses random module to randomly decide which player goes first.
 
-import random
+
 
 def choose_first():
     if random.randint(0, 1) == 0:
