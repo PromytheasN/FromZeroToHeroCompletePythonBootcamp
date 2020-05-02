@@ -16,7 +16,7 @@ def display_board(board):
 def player_input():
     marker = ''
     while marker != 'X' and marker !='O':
-        marker = input("Player 1 please select your marker between X or O: ")
+        marker = input("Player 1 please select your marker between X or O: ").upper()
 
     player1 = marker
     if player1 == "X":
@@ -65,8 +65,9 @@ def space_check(board, position):
 #Step 7, Function that checks if the board is full and returns a boolean.
 
 def full_board_check(board):
-    if " " in board:
-        return False
+    for i in range(1,10):
+        if space_check(board, i):
+            return False
     return True
 
 #Step 8, Function that asks for a player's next position (as a number 1-9) and uses
@@ -86,3 +87,72 @@ def player_choice(board):
 def replay():
     return input ("Would you like to play again? ").upper().startswith("Y")
 
+
+#step 10 combining all functions to FINISH THE GAME!! 
+
+print("Welcome to THE Tic Tac Toe made by me Promytheas fire bringer!")
+
+while True:
+    #Defining board as empty
+    board = [" "]*10
+    
+    #player 1 chooses marker
+    player1_marker, player2_marker, = player_input()
+    
+    #Function picks which player will start first, randomly.
+    turn = choose_first()
+    print( turn + " Is going to play first!")
+
+    play = input("Are you ready to play? Enter Yes or No.")
+
+    if play.lower()[0] == "y":
+        game_on = True
+    else:
+        game_on = False
+    
+    while game_on:
+        if turn == "Player 1":
+            display_board(board)
+            position = player_choice(board)
+            place_marker(board, player1_marker, position)
+        
+            #check after new input if game has won
+        
+            if win_check(board, player1_marker):
+                display_board(board)
+                print("Yah man you won!")
+                game_on = False
+            else:
+                #checking if board is full
+                if full_board_check(board):
+                    display_board(board)
+                    print("The game is a draw.")
+                    break
+                else:
+                    turn = "Player 2"
+                
+                
+        #Players 2 turn
+        
+        display_board(board)
+        position = player_choice(board)
+        place_marker(board, player2_marker, position)
+        
+        if win_check(board, player2_marker):
+            display_board(board)
+            print("Player 2 you won!")
+            game_on = False
+        else:
+            if full_board_check(board):
+                display_board(board)
+                print("The game is a draw.")
+                break
+            else:
+                turn = "Player 1"
+                
+    if not replay():
+        break
+        
+        
+    #PS need some improvements as when you give string instead of integer when selecting position you get error
+    #as well as when you give integer when it asks you if you would like to play again.
