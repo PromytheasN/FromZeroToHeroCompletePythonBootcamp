@@ -2,6 +2,8 @@
 from IPython.display import clear_output
 import random
 
+
+#remove repetition here
 def display_board(board):
     clear_output()
     print(board[7]+'|'+board[8]+'|'+board[9])
@@ -34,7 +36,7 @@ def place_marker(board, marker, position):
 
 
 #Step 4, Function that takes in board and a mark (X or O) and then check to see if that mark won.
-
+#remove repetition if possible here
 def win_check(board, mark):
     
     return((board[7] == mark and board[8] == mark and board[9] == mark) or #accross the top
