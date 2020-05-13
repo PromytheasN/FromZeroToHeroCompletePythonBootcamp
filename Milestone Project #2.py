@@ -25,7 +25,7 @@ class Card:
     Function that prints the information of the object (rank & value).
     """
     
-    print(f"{rank} of {value}")
+    print(f"{self.rank} of {self.value}")
     
    
     
