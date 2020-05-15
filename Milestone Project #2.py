@@ -24,8 +24,26 @@ class Card:
     """
     Function that prints the information of the object (rank & value).
     """
+    return f"{self.rank} of {self.suit}"    
     
-    print(f"{self.rank} of {self.value}")
+class Deck:
+    #store 52 objects in a card list
+    #that can be shuffled
+    #instatiate all 52 card objects and add them to our list
+    #build card objects inside our Deck
     
-   
+    def __init__(self):
+        self.deck = []
+        for suit in suits:
+            for rank in ranks:
+                self.deck.append(Card(suit,rank))
+                
+    def __str__(self):
+        deck_comp = "" #starting with empty string
+        for card in self.deck:
+            deck_comp += '\n' + str(card) # add each Card object's print
+        return deck_comp
+    
+    def shuffle(self):
+        random.shuffle(self.deck)
     
