@@ -24,19 +24,25 @@ class Card:
     """
     Function that prints the information of the object (rank & value).
     """
-    return f"{self.rank} of {self.suit}"    
+    return f"{self.rank} of {self.suit}"   
+
+#we can test it like this.
+#no1 = Card("Hearts","Two")
+#print(no1) or no1.__str__()
     
 class Deck:
-    #store 52 objects in a card list
-    #that can be shuffled
-    #instatiate all 52 card objects and add them to our list
-    #build card objects inside our Deck
+    """
+    store 52 objects in a card list
+    that can be shuffled
+    instatiate all 52 card objects and add them to our list
+    build card objects inside our Deck
+    """
     
     def __init__(self):
         self.deck = []
-        for suit in suits:
+        for suit in suits:  # start with an empty list
             for rank in ranks:
-                self.deck.append(Card(suit,rank))
+                self.deck.append(Card(suit,rank)) # build Card objects and add them to the list
                 
     def __str__(self):
         deck_comp = "" #starting with empty string
@@ -46,4 +52,13 @@ class Deck:
     
     def shuffle(self):
         random.shuffle(self.deck)
-    
+
+"""
+This notes are for better understanding of how to call methods within classes.     
+we can test/call it using this ways.
+Print(Deck()), if we do Print(Deck) we will get the position where Deck is stored, by adding () we 
+call the self of the Deck. The reason we can print the class Deck is because of we used the magic method __str__,
+otherwise the only way to call/print it is by creating an object as bellow using the blue print of the Class Deck
+So we could create object: first_deck = Deck(), first_deck.__str__() or because we used __str__ print(first_deck())
+again () is the self, without it we will get the position of the fist_deck in the memory of the system. 
+"""
