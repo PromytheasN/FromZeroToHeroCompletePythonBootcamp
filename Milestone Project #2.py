@@ -53,6 +53,10 @@ class Deck:
     def shuffle(self):
         random.shuffle(self.deck)
 
+    def deal(self):
+        single_card = self.deck.pop()
+        return single_card
+
 """
 This notes are for better understanding of how to call methods within classes.     
 we can test/call it using this ways.
