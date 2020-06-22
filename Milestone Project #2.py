@@ -57,6 +57,23 @@ class Deck:
         single_card = self.deck.pop()
         return single_card
 
+class Hand:
+    def __init__(self):
+        self.cards = [] #starting with a nempty list.
+        self.value = 0 #Starting with zero Value
+        self.aces = 0 #Keeping track of aces
+    
+    def add_card(self, card):
+        self.cards.append(card)
+        self.value += values[card.rank]
+        if card.rank == "Ace":
+            self.aces += 1
+    
+    def adjust_for_ace(self):
+        while self.value > 21 and self.aces:
+            self.value -= 10
+            self.aces -= 1
+
 """
 This notes are for better understanding of how to call methods within classes.     
 we can test/call it using this ways.
