@@ -54,10 +54,13 @@ class Deck:
         random.shuffle(self.deck)
 
     def deal(self):
-        single_card = self.deck.pop()
+        single_card = self.deck.pop() #Taking a card out of the deck list.
         return single_card
 
 class Hand:
+    """
+    We create a class for the Hand that the player holds.
+    """
     def __init__(self):
         self.cards = [] #starting with a nempty list.
         self.value = 0 #Starting with zero Value
@@ -66,11 +69,11 @@ class Hand:
     def add_card(self, card):
         self.cards.append(card)
         self.value += values[card.rank]
-        if card.rank == "Ace":
+        if card.rank == "Ace": #We count the aces we hold
             self.aces += 1
     
     def adjust_for_ace(self):
-        while self.value > 21 and self.aces:
+        while self.value > 21 and self.aces: #Making sure that if we have Aces we can use value 1 instead of 10 if valuie is over 21 in total
             self.value -= 10
             self.aces -= 1
 
