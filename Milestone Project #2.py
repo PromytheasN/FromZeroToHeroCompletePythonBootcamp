@@ -99,6 +99,20 @@ class Chips:
     def lose_bet(self):
         self.total -= self.bet
 
+def take_bet(chips):
+    
+    while True:
+        try:
+            chips.bet = int(input("How many chips would you like to bet?"))
+        except ValueError:
+            print("Sorry, invalid input, bet must be a physichal number!")
+        else:
+            if chips.bet > chips.total:
+                print("Sorry, your best can't exceed your total chips:". chips.total)
+                
+            else:
+                break
+
 """
 This notes are for better understanding of how to call methods within classes.     
 we can test/call it using this ways.
