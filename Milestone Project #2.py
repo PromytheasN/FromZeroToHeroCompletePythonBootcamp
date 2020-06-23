@@ -150,6 +150,15 @@ def hit_or_stand(deck,hand):
             continue
         break
 
+def display_some_cards(player,dealer):
+    print("\nDealer's Hand: <card hidden> ", dealer.cards[1], "\nPlayer's Hand:", *player.cards, sep = "\n ")
+    
+def show_all_cards(player, dealer):
+    print("\nDealer's Hand:", *dealer.cards, sep="\n ")
+    print("Dealer's Hand =", dealer.value)
+    print("\nPlayer's Hand:", *player.cards, sep="\n ")
+    print("Player's Hand =",player.value)
+
 """
 This notes are for better understanding of how to call methods within classes.     
 we can test/call it using this ways.
