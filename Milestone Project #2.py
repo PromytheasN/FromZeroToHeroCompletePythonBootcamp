@@ -100,6 +100,10 @@ class Chips:
         self.total -= self.bet
 
 def take_bet(chips):
+          
+    """
+    Function that requires user to input the amount of chips he wishes to bet, and checks if input is integar.
+    """
     
     while True:
         try:
