@@ -127,6 +127,29 @@ def take_hit(deck,hand):
     hand.adjust_for_ace()
 
 
+
+def hit_or_stand(deck,hand):
+    
+    """
+    Function that asks the player to hit or stand
+    """
+    
+    global playing # to control playing variable
+    
+    while True:
+        choice = input("Would you like to Hit or Stand? Enter 'H' or 'S'")
+        
+        if choice[0].lower() =="h":
+            take_hit(deck,hand) #tappes into hit() function
+            
+        elif choice[0].lower() == 's':
+            print("Player stands. Dealer is playing now.")
+            playing = False
+        else:
+            print("Sorry, please try again.")
+            continue
+        break
+
 """
 This notes are for better understanding of how to call methods within classes.     
 we can test/call it using this ways.
