@@ -76,6 +76,28 @@ class Hand:
         while self.value > 21 and self.aces: #Making sure that if we have Aces we can use value 1 instead of 10 if valuie is over 21 in total
             self.value -= 10
             self.aces -= 1
+          
+          
+class Chips:
+    
+    """
+    Cheaps class for keeping record of the total chips of the player, winnings and losses from each bet
+    and the total amount betting each time.
+    """
+    
+    def __init__(self):
+        
+        #We can also do self.total = total and define the total like this __init__(self, total = 200)
+        self.total = 200 #This is the default value and can could be set by users input as well.
+        
+        
+        self.bet = 0
+        
+    def win_bet(self):
+        self.total += self.bet
+        
+    def lose_bet(self):
+        self.total -= self.bet
 
 """
 This notes are for better understanding of how to call methods within classes.     
