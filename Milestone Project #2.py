@@ -116,6 +116,16 @@ def take_bet(chips):
                 
             else:
                 break
+          
+def take_hit(deck,hand):
+    
+    """
+    function that takes hits from player until they bust
+    """
+    
+    hand.add_card(deck.deal())
+    hand.adjust_for_ace()
+
 
 """
 This notes are for better understanding of how to call methods within classes.     
