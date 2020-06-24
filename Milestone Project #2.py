@@ -62,7 +62,7 @@ class Hand:
     We create a class for the Hand that the player holds.
     """
     def __init__(self):
-        self.cards = [] #starting with a nempty list.
+        self.cards = [] #starting with an empty list.
         self.value = 0 #Starting with zero Value
         self.aces = 0 #Keeping track of aces
     
@@ -116,7 +116,7 @@ def take_bet(chips):
                 
             else:
                 break
-          
+                
 def take_hit(deck,hand):
     
     """
@@ -125,7 +125,6 @@ def take_hit(deck,hand):
     
     hand.add_card(deck.deal())
     hand.adjust_for_ace()
-
 
 
 def hit_or_stand(deck,hand):
@@ -178,35 +177,80 @@ def dealer_wins(player,dealer,chips):
 def push(player,dealer):
     print("Dealer and Player tie! It's a push.")
 
-
-#step 10
-
-def player_busts(player, dealer, chips):
-    print("Player busts!")
-    chips.lose_bet()
     
-def player_wins(player, dealer, chips):
-    print("Player wins!")
-    chips.win_bet()
-    
-def dealer_busts(player, dealer, chips):
-    print("Dealer busts!")
-    chips.win_bet()
+#Now we will combine everything so we can have a functional game.
 
-def dealer_wins(player, dealer, chips):
-    print("Dealer wins!")
-    chips.lose_bet()
-    
-def push(player, dealer):
-    print("Dealer and Player tie! It's a push.")
 
-          
-"""
-This notes are for better understanding of how to call methods within classes.     
-we can test/call it using this ways.
-Print(Deck()), if we do Print(Deck) we will get the position where Deck is stored, by adding () we 
-call the self of the Deck. The reason we can print the class Deck is because of we used the magic method __str__,
-otherwise the only way to call/print it is by creating an object as bellow using the blue print of the Class Deck
-So we could create object: first_deck = Deck(), first_deck.__str__() or because we used __str__ print(first_deck())
-again () is the self, without it we will get the position of the fist_deck in the memory of the system. 
-"""
+while True:
+    #Printing an opening statment
+    print("Welcome to Promytheous' BlackJack! Get as close to 21 as you can without getting busted\
+you shall be rewarded from the Gods, with gifts beyond your imagination! \n\
+I shall share my light of FIRE to assist you. Dealer hits until she reaches 17. Aces will count\
+ as 1 or 11. Let the game begin!")
+    
+    #Creating and shuffling the deck, dealing two cards to each player.
+    deck = Deck()
+    deck.shuffle()
+    
+    player_hand = Hand()
+    player_hand.add_card(deck.deal())
+    player_hand.add_card(deck.deal())
+    
+    dealer_hand = Hand()
+    dealer_hand.add_card(deck.deal())
+    dealer_hand.add_card(deck.deal())
+    
+    #Setting players cheaps
+    player_chips = Chips() #default = 200
+    
+    #Ask player for their bet
+    take_bet(player_chips)
+    
+    #Show cards while keeping one of the dealer's cards hidden
+    display_some_cards(player_hand, dealer_hand)
+    
+    while playing: #recall this variable from our hit_or_stand function
+        
+        #Ask player to hit or stand
+        hit_or_stand(deck,player_hand)
+        
+        #Show cards (keeping dealers 1 card hidden)
+        display_some_cards(player_hand,dealer_hand)
+    
+        #If player's hand exceeds 21, run player_busts() and break out loop
+        if player_hand.value > 21:
+            player_busts(player_hand, dealer_hand, player_chips)
+            break
+            
+    #If player hasn't busted, play dealer's hand until dealer reaches 17
+    if player_hand.value <= 21:
+        
+        while dealer_hand.value < 17:
+            take_hit(deck,dealer_hand)
+            
+        #Show all cards
+        show_all_cards(player_hand, dealer_hand)
+        
+        #Run different winning scenario
+        if dealer_hand.value > 21:
+            dealer_busts(player_hand, dealer_hand, player_chips)
+        
+        elif dealer_hand.value > player_hand.value:
+            player_wins(player_hand, dealer_hand, player_chips)
+            
+        else:
+            push(player_hand, dealer_hand)
+    
+    #Inform Player of their chips total
+    print("\nPlayer's winnings stand at",player_chips.total)
+    
+    #Ask to play again
+    new_game = input("Would you like to play another hand? Enter 'Y' or 'N'")
+    
+    if new_game[0].lower()=="y":
+        playing = True
+        continue
+    else:
+        print("Thanks for playing!")
+        break
+        
